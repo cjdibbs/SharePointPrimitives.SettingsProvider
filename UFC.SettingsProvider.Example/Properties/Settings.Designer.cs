@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UFC.SettingsProvider.Example.Properties {
+namespace SPPrimitives.SettingsProvider.Example.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -34,10 +34,21 @@ namespace UFC.SettingsProvider.Example.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Default String")]
         public string StringExample {
             get {
                 return ((string)(this["StringExample"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=NOWBI-ADMIN;Initial Catalog=NowBI.VI.ReportingDB;Integrated Security=" +
+            "True")]
+        public string TestConnection {
+            get {
+                return ((string)(this["TestConnection"]));
             }
         }
     }
