@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPPrimitives.SettingsProvider", "SPPrimitives.SettingsProvider.csproj", "{9780779F-7614-42CB-8B41-7BC96C64F7E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPPrimitives.SettingsProvider", "SPPrimitives.SettingsProvider\SPPrimitives.SettingsProvider.csproj", "{9780779F-7614-42CB-8B41-7BC96C64F7E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPPrimitives.SettingsProvider.Example", "..\UFC.SettingsProvider.Example\SPPrimitives.SettingsProvider.Example.csproj", "{5791FD2E-A7B3-451D-9D05-37443D6A599F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPPrimitives.SettingsProvider.Example", "SPPrimitives.SettingsProvider.Example\SPPrimitives.SettingsProvider.Example.csproj", "{5791FD2E-A7B3-451D-9D05-37443D6A599F}"
 EndProject
-Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "SPPrimitives.SettingsProvider.Database", "..\SPPrimitives.SettingsProvider.Database\SPPrimitives.SettingsProvider.Database.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
+Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "SPPrimitives.SettingsProvider.Database", "SPPrimitives.SettingsProvider.Database\SPPrimitives.SettingsProvider.Database.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPPrimitives.SettingsProvider.Contracts", "..\SPPrimitives.SettingsProviders.Contracts\SPPrimitives.SettingsProvider.Contracts.csproj", "{4B135F7D-1D6A-46ED-8580-3D8FF5A18BEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPPrimitives.SettingsProvider.Contracts", "SPPrimitives.SettingsProvider.Contracts\SPPrimitives.SettingsProvider.Contracts.csproj", "{4B135F7D-1D6A-46ED-8580-3D8FF5A18BEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

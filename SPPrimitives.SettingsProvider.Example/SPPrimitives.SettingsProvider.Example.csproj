@@ -60,7 +60,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UFC.SettingsProvider\SPPrimitives.SettingsProvider.csproj">
+    <ProjectReference Include="..\SPPrimitives.SettingsProvider\SPPrimitives.SettingsProvider.csproj">
       <Project>{9780779F-7614-42CB-8B41-7BC96C64F7E4}</Project>
       <Name>SPPrimitives.SettingsProvider</Name>
     </ProjectReference>
