@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].Sections
+	ADD CONSTRAINT SectionsPK
+	PRIMARY KEY (Id)
