@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SPPrimitives.SettingsProvider.DatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="SPPrimitivesSettingsProviderDatabaseModelStoreContainer">
+          <EntitySet Name="ApplicationSettings" EntityType="SPPrimitives.SettingsProvider.DatabaseModel.Store.ApplicationSettings" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Sections" EntityType="SPPrimitives.SettingsProvider.DatabaseModel.Store.Sections" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SqlConnectionNames" EntityType="SPPrimitives.SettingsProvider.DatabaseModel.Store.SqlConnectionNames" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SqlConnectionStrings" EntityType="SPPrimitives.SettingsProvider.DatabaseModel.Store.SqlConnectionStrings" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ApplcationSettings_Sections" Association="SPPrimitives.SettingsProvider.DatabaseModel.Store.FK_ApplcationSettings_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="ApplicationSettings" EntitySet="ApplicationSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SqlConnectionNames_Sections" Association="SPPrimitives.SettingsProvider.DatabaseModel.Store.FK_SqlConnectionNames_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="SqlConnectionNames" EntitySet="SqlConnectionNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SqlConnectionNames_SqlConnectionStrings" Association="SPPrimitives.SettingsProvider.DatabaseModel.Store.FK_SqlConnectionNames_SqlConnectionStrings">
+            <End Role="SqlConnectionStrings" EntitySet="SqlConnectionStrings" />
+            <End Role="SqlConnectionNames" EntitySet="SqlConnectionNames" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ApplicationSettings">
+          <Key>
+            <PropertyRef Name="SectionId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="SectionId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="1024" />
+          <Property Name="Value" Type="varchar(max)" />
+          <Property Name="Type" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Sections">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="AssemblyName" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SqlConnectionNames">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="SqlConnectionId" />
+          </Key>
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="1024" />
+          <Property Name="SqlConnectionId" Type="int" Nullable="false" />
+          <Property Name="SectionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SqlConnectionStrings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ConnectionString" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ApplcationSettings_Sections">
+          <End Role="Sections" Type="SPPrimitives.SettingsProvider.DatabaseModel.Store.Sections" Multiplicity="1" />
+          <End Role="ApplicationSettings" Type="SPPrimitives.SettingsProvider.DatabaseModel.Store.ApplicationSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationSettings">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SqlConnectionNames_Sections">
+          <End Role="Sections" Type="SPPrimitives.SettingsProvider.DatabaseModel.Store.Sections" Multiplicity="1" />
+          <End Role="SqlConnectionNames" Type="SPPrimitives.SettingsProvider.DatabaseModel.Store.SqlConnectionNames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sections">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SqlConnectionNames">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SqlConnectionNames_SqlConnectionStrings">
+          <End Role="SqlConnectionStrings" Type="SPPrimitives.SettingsProvider.DatabaseModel.Store.SqlConnectionStrings" Multiplicity="1" />
+          <End Role="SqlConnectionNames" Type="SPPrimitives.SettingsProvider.DatabaseModel.Store.SqlConnectionNames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SqlConnectionStrings">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SqlConnectionNames">
+              <PropertyRef Name="SqlConnectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SPPrimitives.SettingsProvider.Database" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="SettingsProviderDatabase">
+          <EntitySet Name="Sections" EntityType="SPPrimitives.SettingsProvider.Database.Section" />
+          <EntitySet Name="SqlConnectionNames" EntityType="SPPrimitives.SettingsProvider.Database.SqlConnectionName" />
+          <EntitySet Name="SqlConnectionStrings" EntityType="SPPrimitives.SettingsProvider.Database.SqlConnectionString" />
+          <AssociationSet Name="FK_SqlConnectionNames_Sections" Association="SPPrimitives.SettingsProvider.Database.FK_SqlConnectionNames_Sections">
+            <End Role="Sections" EntitySet="Sections" />
+            <End Role="SqlConnectionNames" EntitySet="SqlConnectionNames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SqlConnectionNames_SqlConnectionStrings" Association="SPPrimitives.SettingsProvider.Database.FK_SqlConnectionNames_SqlConnectionStrings">
+            <End Role="SqlConnectionStrings" EntitySet="SqlConnectionStrings" />
+            <End Role="SqlConnectionNames" EntitySet="SqlConnectionNames" />
+          </AssociationSet>
+          <EntitySet Name="ApplicationSettings" EntityType="SPPrimitives.SettingsProvider.Database.ApplicationSetting" />
+          <AssociationSet Name="FK_ApplcationSettings_Sections1" Association="SPPrimitives.SettingsProvider.Database.FK_ApplcationSettings_Sections1">
+            <End Role="Section" EntitySet="Sections" />
+            <End Role="ApplicationSetting" EntitySet="ApplicationSettings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="AssemblyName" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="SqlConnectionNames" Relationship="SPPrimitives.SettingsProvider.Database.FK_SqlConnectionNames_Sections" FromRole="Sections" ToRole="SqlConnectionNames" />
+          <NavigationProperty Name="ApplicationSettings" Relationship="SPPrimitives.SettingsProvider.Database.FK_ApplcationSettings_Sections1" FromRole="Section" ToRole="ApplicationSetting" />
+        </EntityType>
+        <EntityType Name="SqlConnectionName">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="SqlConnectionId" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="1024" Unicode="false" FixedLength="false" />
+          <Property Name="SqlConnectionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Section" Relationship="SPPrimitives.SettingsProvider.Database.FK_SqlConnectionNames_Sections" FromRole="SqlConnectionNames" ToRole="Sections" />
+          <NavigationProperty Name="SqlConnectionString" Relationship="SPPrimitives.SettingsProvider.Database.FK_SqlConnectionNames_SqlConnectionStrings" FromRole="SqlConnectionNames" ToRole="SqlConnectionStrings" />
+        </EntityType>
+        <EntityType Name="SqlConnectionString">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConnectionString" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="SqlConnectionNames" Relationship="SPPrimitives.SettingsProvider.Database.FK_SqlConnectionNames_SqlConnectionStrings" FromRole="SqlConnectionStrings" ToRole="SqlConnectionNames" />
+        </EntityType>
+        <Association Name="FK_SqlConnectionNames_Sections">
+          <End Role="Sections" Type="SPPrimitives.SettingsProvider.Database.Section" Multiplicity="1" />
+          <End Role="SqlConnectionNames" Type="SPPrimitives.SettingsProvider.Database.SqlConnectionName" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_SqlConnectionNames_SqlConnectionStrings">
+          <End Role="SqlConnectionStrings" Type="SPPrimitives.SettingsProvider.Database.SqlConnectionString" Multiplicity="1" />
+          <End Role="SqlConnectionNames" Type="SPPrimitives.SettingsProvider.Database.SqlConnectionName" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SqlConnectionStrings">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SqlConnectionNames">
+              <PropertyRef Name="SqlConnectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ApplicationSetting">
+          <Key>
+            <PropertyRef Name="SectionId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Type="Int32" Name="SectionId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Value" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Type" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Section" Relationship="SPPrimitives.SettingsProvider.Database.FK_ApplcationSettings_Sections1" FromRole="ApplicationSetting" ToRole="Section" />
+        </EntityType>
+        <Association Name="FK_ApplcationSettings_Sections1">
+          <End Type="SPPrimitives.SettingsProvider.Database.Section" Role="Section" Multiplicity="1" />
+          <End Type="SPPrimitives.SettingsProvider.Database.ApplicationSetting" Role="ApplicationSetting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Section">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationSetting">
+              <PropertyRef Name="SectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+          
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="SPPrimitivesSettingsProviderDatabaseModelStoreContainer" CdmEntityContainer="SettingsProviderDatabase">
+          <EntitySetMapping Name="Sections"><EntityTypeMapping TypeName="SPPrimitives.SettingsProvider.Database.Section"><MappingFragment StoreEntitySet="Sections">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="AssemblyName" ColumnName="AssemblyName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SqlConnectionNames"><EntityTypeMapping TypeName="SPPrimitives.SettingsProvider.Database.SqlConnectionName"><MappingFragment StoreEntitySet="SqlConnectionNames">
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="SqlConnectionId" ColumnName="SqlConnectionId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SqlConnectionStrings"><EntityTypeMapping TypeName="SPPrimitives.SettingsProvider.Database.SqlConnectionString"><MappingFragment StoreEntitySet="SqlConnectionStrings">
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="ConnectionString" ColumnName="ConnectionString" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_SqlConnectionNames_Sections" TypeName="SPPrimitives.SettingsProvider.Database.FK_SqlConnectionNames_Sections" StoreEntitySet="SqlConnectionNames">
+            <EndProperty Name="Sections">
+              <ScalarProperty Name="Id" ColumnName="SectionId" />
+            </EndProperty>
+            <EndProperty Name="SqlConnectionNames">
+              <ScalarProperty Name="Name" ColumnName="Name" />
+              <ScalarProperty Name="SqlConnectionId" ColumnName="SqlConnectionId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_SqlConnectionNames_SqlConnectionStrings" TypeName="SPPrimitives.SettingsProvider.Database.FK_SqlConnectionNames_SqlConnectionStrings" StoreEntitySet="SqlConnectionNames">
+            <EndProperty Name="SqlConnectionStrings">
+              <ScalarProperty Name="Id" ColumnName="SqlConnectionId" />
+            </EndProperty>
+            <EndProperty Name="SqlConnectionNames">
+              <ScalarProperty Name="Name" ColumnName="Name" />
+              <ScalarProperty Name="SqlConnectionId" ColumnName="SqlConnectionId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="ApplicationSettings">
+            <EntityTypeMapping TypeName="SPPrimitives.SettingsProvider.Database.ApplicationSetting">
+              <MappingFragment StoreEntitySet="ApplicationSettings">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_ApplcationSettings_Sections1" TypeName="SPPrimitives.SettingsProvider.Database.FK_ApplcationSettings_Sections1" StoreEntitySet="ApplicationSettings">
+            <EndProperty Name="ApplicationSetting">
+              <ScalarProperty Name="Name" ColumnName="Name" />
+              <ScalarProperty Name="SectionId" ColumnName="SectionId" />
+            </EndProperty>
+            <EndProperty Name="Section">
+              <ScalarProperty Name="Id" ColumnName="SectionId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Database">
+        <EntityTypeShape EntityType="SPPrimitives.SettingsProvider.Database.Section" Width="1.5" PointX="0.75" PointY="3.625" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPrimitives.SettingsProvider.Database.SqlConnectionName" Width="1.5" PointX="3" PointY="0.75" Height="1.5923063151041657" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPrimitives.SettingsProvider.Database.SqlConnectionString" Width="1.5" PointX="0.75" PointY="1" Height="1.427958984375" IsExpanded="true" />
+        <AssociationConnector Association="SPPrimitives.SettingsProvider.Database.FK_SqlConnectionNames_Sections" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.625" />
+          <ConnectorPoint PointX="2.625" PointY="3.25" />
+          <ConnectorPoint PointX="2.625" PointY="1.2973527958170572" />
+          <ConnectorPoint PointX="3" PointY="1.2973527958170572" />
+        </AssociationConnector>
+        <AssociationConnector Association="SPPrimitives.SettingsProvider.Database.FK_SqlConnectionNames_SqlConnectionStrings" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="1.8823295554606114" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="1.8823295554606108" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="1.8823295554606114" />
+          <ConnectorPoint PointX="3" PointY="1.8823295554606114" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SPPrimitives.SettingsProvider.Database.ApplicationSetting" Width="1.5" PointX="3" PointY="3.625" Height="1.7566536458333335" />
+        <AssociationConnector Association="SPPrimitives.SettingsProvider.Database.FK_ApplcationSettings_Sections1" >
+          <ConnectorPoint PointX="2.25" PointY="4.5345793229166658" />
+          <ConnectorPoint PointX="3" PointY="4.5345793229166658" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

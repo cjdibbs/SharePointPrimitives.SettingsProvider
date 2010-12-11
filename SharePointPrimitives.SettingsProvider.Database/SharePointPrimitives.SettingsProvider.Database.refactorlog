@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0">
+  <Operation Name="Rename Refactor" Key="ebec2682-0c52-40db-b1ea-ed523cd4d8f5" ChangeDateTime="10/31/2010 17:48:50">
+    <Property Name="ElementName" Value="[dbo].[SqlConnection_SqlConnectionNames_FK]" />
+    <Property Name="ElementType" Value="ISql90ForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[SqlConnectionNames]" />
+    <Property Name="ParentElementType" Value="ISql100Table" />
+    <Property Name="NewName" Value="SqlConnectionSqlConnectionNames" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2c710440-37e5-4323-9647-19e626a3e5d1" ChangeDateTime="10/31/2010 18:19:52">
+    <Property Name="ElementName" Value="[dbo].[ApplcationSettings]" />
+    <Property Name="ElementType" Value="ISql100Table" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="ISql90Schema" />
+    <Property Name="NewName" Value="[ApplicationSettings]" />
+  </Operation>
+</Operations>
