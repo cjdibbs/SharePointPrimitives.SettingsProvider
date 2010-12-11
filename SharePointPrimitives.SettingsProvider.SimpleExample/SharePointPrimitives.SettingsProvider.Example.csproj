@@ -59,7 +59,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharePointPremitives.SettingsProviders\SharePointPremitives.SettingsProvider.csproj">
+    <ProjectReference Include="..\SharePointPrimitives.SettingsProvider\SharePointPremitives.SettingsProvider.csproj">
       <Project>{891273BB-B6C3-4E6C-9023-D0D6936409ED}</Project>
       <Name>SharePointPremitives.SettingsProvider</Name>
     </ProjectReference>

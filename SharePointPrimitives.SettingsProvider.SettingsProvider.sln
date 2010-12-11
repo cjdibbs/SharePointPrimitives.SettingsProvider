@@ -5,13 +5,15 @@ Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "SharePointPrimitives.Settin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharePointPrimitives.SettingsProvider.Data", "SharePointPrimitives.SettingsProvider.Data", "{E707C460-A31E-46CF-94FA-8B2E0AE4D8FE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharePointPrimitives.SettingsProvider.Example", "SharePointPrimitives.SettingsProvider.Example", "{DBF363A0-9B6F-4A40-963E-E662CF064424}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharePointPrimitives.SettingsProvider.Examples", "SharePointPrimitives.SettingsProvider.Examples", "{DBF363A0-9B6F-4A40-963E-E662CF064424}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider.Data", "SharePointPrimitives.SettingsProvider.Data\SharePointPrimitives.SettingsProvider.Data.csproj", "{D8AEF72D-7905-4CDF-981A-8D8778E2B136}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPremitives.SettingsProvider", "SharePointPrimitives.SettingsProvider\SharePointPremitives.SettingsProvider.csproj", "{891273BB-B6C3-4E6C-9023-D0D6936409ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider.Example", "SharePointPrimitives.SettingsProvider.SimpleExample\SharePointPrimitives.SettingsProvider.Example.csproj", "{6EF9E842-9FF4-4128-A046-72D7EA86555A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider.Log4net", "SharePointPrimitives.SettingsProvider.Log4net\SharePointPrimitives.SettingsProvider.Log4net.csproj", "{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,16 @@ Global
 		{6EF9E842-9FF4-4128-A046-72D7EA86555A}.Release|Mixed Platforms.Build.0 = Release|x86
 		{6EF9E842-9FF4-4128-A046-72D7EA86555A}.Release|x86.ActiveCfg = Release|x86
 		{6EF9E842-9FF4-4128-A046-72D7EA86555A}.Release|x86.Build.0 = Release|x86
+		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,5 +87,6 @@ Global
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {E707C460-A31E-46CF-94FA-8B2E0AE4D8FE}
 		{D8AEF72D-7905-4CDF-981A-8D8778E2B136} = {E707C460-A31E-46CF-94FA-8B2E0AE4D8FE}
 		{6EF9E842-9FF4-4128-A046-72D7EA86555A} = {DBF363A0-9B6F-4A40-963E-E662CF064424}
+		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A} = {DBF363A0-9B6F-4A40-963E-E662CF064424}
 	EndGlobalSection
 EndGlobal
