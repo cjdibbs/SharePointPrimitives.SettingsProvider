@@ -67,8 +67,7 @@ namespace SharePointPrimitives.SettingsProvider.Log4net {
     /// </remarks>
     /// <author>Nicko Cadell</author>
     /// <author>Gert Driesen</author>
-    [AttributeUsage(AttributeTargets.Assembly)]
-    [Serializable]
+    [AttributeUsage(AttributeTargets.Assembly), Serializable]
     public sealed class SettingsProviderConfiguratorAttribute : ConfiguratorAttribute {
         
         public SettingsProviderConfiguratorAttribute()
