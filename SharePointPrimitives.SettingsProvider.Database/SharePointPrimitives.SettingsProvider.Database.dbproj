@@ -114,6 +114,28 @@
     <Folder Include="Schema Objects\Database Level Objects\Storage\Full Text Catalogs\" />
     <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Functions\" />
     <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Schemes\" />
+    <Folder Include="Schema Objects\Schemas\audit\" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability\" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability\Defaults\" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability\Functions\" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability\Rules\" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability\Stored Procedures\" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability\Types\" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability\Types\User Defined Data Types\" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability\Types\User Defined Types CLR\" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability\Types\User Defined Table Types\" />
+    <Folder Include="Schema Objects\Schemas\audit\Programmability\Types\XML Schema Collections\" />
+    <Folder Include="Schema Objects\Schemas\audit\Synonyms\" />
+    <Folder Include="Schema Objects\Schemas\audit\Tables\" />
+    <Folder Include="Schema Objects\Schemas\audit\Tables\Constraints\" />
+    <Folder Include="Schema Objects\Schemas\audit\Tables\Indexes\" />
+    <Folder Include="Schema Objects\Schemas\audit\Tables\Keys\" />
+    <Folder Include="Schema Objects\Schemas\audit\Tables\Triggers\" />
+    <Folder Include="Schema Objects\Schemas\audit\Tables\Statistics\" />
+    <Folder Include="Schema Objects\Schemas\audit\Views\" />
+    <Folder Include="Schema Objects\Schemas\audit\Views\Indexes\" />
+    <Folder Include="Schema Objects\Schemas\audit\Views\Triggers\" />
+    <Folder Include="Schema Objects\Schemas\audit\Views\Statistics\" />
   </ItemGroup>
   <ItemGroup>
     <PropertiesFile Include="Properties\Database.sqlsettings">
@@ -181,6 +203,39 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\FK_ApplcationSettings_Sections.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Triggers\SqlConnectionStrings_Audit.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Triggers\SqlConnectionNames_Audit.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Triggers\Sections_Audit.trigger.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Triggers\ApplicationSettings_Audit.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\audit\Tables\SqlConnectionStrings.table.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Schema Objects\Schemas\audit\Tables\SqlConnectionNames.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\audit\Tables\Sections.table.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Schema Objects\Schemas\audit\Tables\ApplicationSettings.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Database Level Objects\Security\Schemas\audit.schema.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>
