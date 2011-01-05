@@ -1,5 +1,7 @@
 ﻿using System.Configuration;
+using SharePointPrimitives.SettingsProvider;
+
 namespace SimpleExample.Properties {
-    [SettingsProvider(typeof(SharePointPremitives.SettingsProvider))]
+    [SettingsProvider(typeof(Provider))]
     internal sealed partial class Settings { }
 }

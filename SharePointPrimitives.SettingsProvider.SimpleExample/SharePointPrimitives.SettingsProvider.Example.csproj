@@ -59,9 +59,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharePointPrimitives.SettingsProvider\SharePointPremitives.SettingsProvider.csproj">
+    <ProjectReference Include="..\SharePointPrimitives.SettingsProvider\SharePointPrimitives.SettingsProvider.csproj">
       <Project>{891273BB-B6C3-4E6C-9023-D0D6936409ED}</Project>
-      <Name>SharePointPremitives.SettingsProvider</Name>
+      <Name>SharePointPrimitives.SettingsProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
