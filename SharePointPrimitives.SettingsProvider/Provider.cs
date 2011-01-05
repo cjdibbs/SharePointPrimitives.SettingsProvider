@@ -32,10 +32,9 @@ using System.Collections.Specialized;
 using System.Configuration;
 using System.Globalization;
 using System.Xml;
-using SharePointPrimitives.SettingsProvider;
 
-namespace SharePointPremitives {
-    public class SettingsProvider : System.Configuration.SettingsProvider, IApplicationSettingsProvider {
+namespace SharePointPrimitives.SettingsProvider {
+    public class Provider : System.Configuration.SettingsProvider, IApplicationSettingsProvider {
 
         public override string ApplicationName { get; set; }
 

@@ -8,8 +8,8 @@
     <ProjectGuid>{891273BB-B6C3-4E6C-9023-D0D6936409ED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SharePointPremitives</RootNamespace>
-    <AssemblyName>SharePointPremitives.SettingsProviders</AssemblyName>
+    <RootNamespace>SharePointPrimitives</RootNamespace>
+    <AssemblyName>SharePointPrimitives.SettingsProviders</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,13 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SettingsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharePointPrimitives.SettingsProvider.Data\SharePointPrimitives.SettingsProvider.Data.csproj">
       <Project>{D8AEF72D-7905-4CDF-981A-8D8778E2B136}</Project>
-      <Name>SharePointPrimitives.SettingsProvider.Data %28SharePointPrimitives.SettingsProvider.Data\SharePointPrimitives.SettingsProvider.Data%29</Name>
+      <Name>SharePointPrimitives.SettingsProvider.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
