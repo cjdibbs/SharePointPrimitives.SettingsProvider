@@ -54,6 +54,7 @@
     <ProjectReference Include="..\SharePointPrimitives.SettingsProvider.Data\SharePointPrimitives.SettingsProvider.Data.csproj">
       <Project>{D8AEF72D-7905-4CDF-981A-8D8778E2B136}</Project>
       <Name>SharePointPrimitives.SettingsProvider.Data</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
