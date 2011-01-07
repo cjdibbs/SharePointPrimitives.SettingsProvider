@@ -93,6 +93,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="reload_from_audit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pointInTime" Type="datetime" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -114,6 +117,9 @@
             <End Role="Section" EntitySet="Sections" />
             <End Role="ApplicationSetting" EntitySet="ApplicationSettings" />
           </AssociationSet>
+          <FunctionImport Name="ReloadFromAuditLogs">
+            <Parameter Name="pointInTime" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Section">
           <Key>
@@ -239,6 +245,7 @@
               <ScalarProperty Name="Id" ColumnName="SectionId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="ReloadFromAuditLogs" FunctionName="SPPrimitives.SettingsProvider.DatabaseModel.Store.reload_from_audit" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

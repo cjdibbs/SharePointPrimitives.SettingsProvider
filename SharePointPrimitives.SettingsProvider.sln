@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharePointPrimitives.Settin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider.Data", "SharePointPrimitives.SettingsProvider.Data\SharePointPrimitives.SettingsProvider.Data.csproj", "{D8AEF72D-7905-4CDF-981A-8D8778E2B136}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPremitives.SettingsProvider", "SharePointPrimitives.SettingsProvider\SharePointPremitives.SettingsProvider.csproj", "{891273BB-B6C3-4E6C-9023-D0D6936409ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider", "SharePointPrimitives.SettingsProvider\SharePointPrimitives.SettingsProvider.csproj", "{891273BB-B6C3-4E6C-9023-D0D6936409ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider.Example", "SharePointPrimitives.SettingsProvider.SimpleExample\SharePointPrimitives.SettingsProvider.Example.csproj", "{6EF9E842-9FF4-4128-A046-72D7EA86555A}"
 EndProject

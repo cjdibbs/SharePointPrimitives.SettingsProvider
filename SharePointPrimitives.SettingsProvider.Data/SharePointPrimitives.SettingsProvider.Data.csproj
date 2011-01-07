@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="DatabaseExtensions.cs" />
     <Compile Include="Patch.cs" />
+    <Compile Include="SettingsProviderDatabase.cs" />
     <Compile Include="SnapShot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectionExtensions.cs" />

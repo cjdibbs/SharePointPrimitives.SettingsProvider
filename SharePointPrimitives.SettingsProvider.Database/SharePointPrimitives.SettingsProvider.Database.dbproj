@@ -238,6 +238,9 @@
     <Build Include="Schema Objects\Database Level Objects\Security\Schemas\audit.schema.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\reload_from_audit.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <DeploymentExtensionConfiguration Include="SPPrimitives.SettingsProvider.Database.refactorlog">

@@ -14,7 +14,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("SPPrimitives.SettingsProvider.Database", "FK_ApplcationSettings_Sections1", "Section", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(SharePointPrimitives.SettingsProvider.Section), "ApplicationSetting", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(SharePointPrimitives.SettingsProvider.ApplicationSetting))]
 
 // Original file name:
-// Generation date: 10/31/2010 3:52:30 PM
+// Generation date: 1/7/2011 10:39:38 AM
 namespace SharePointPrimitives.SettingsProvider
 {
     
