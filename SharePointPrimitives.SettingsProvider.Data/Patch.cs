@@ -26,10 +26,9 @@ namespace SharePointPrimitives.SettingsProvider {
         public string Section { get; set; }
         public List<Action> Actions { get; private set; }
 
-
         public Patch() { Actions = new List<Action>(); }
 
-        public Patch(SnapShot inital)
+        public Patch(SnapShot inital, Action.ActionType action)
             : this() {
             this.Assembly = inital.Assembly;
             this.Section = inital.Section;
@@ -38,14 +37,14 @@ namespace SharePointPrimitives.SettingsProvider {
                     Name = setting.Key,
                     Value = setting.Value,
                     IsConnectionString = false,
-                    Type = Action.ActionType.Insert
+                    Type = action
                 });
             foreach (var connection in inital.ConnectionStrings) {
                 Actions.Add(new Action() {
                     Name = connection.Key,
                     Value = connection.Value,
                     IsConnectionString = true,
-                    Type = Action.ActionType.Insert
+                    Type = action
                 });
             }
         }
@@ -109,6 +108,25 @@ namespace SharePointPrimitives.SettingsProvider {
             return ret;
         }
 
+        public static Patch FromXml(XElement element) {
+            Patch ret = new Patch();
+            if (element.Name == "patch") {
+                ret.Assembly = element.Attribute("assembly").Value;
+                ret.Section = element.Attribute("section").Value;
+                foreach(var action in element.Elements("action")){
+                    ret.Actions.Add(
+                        new Action() {
+                            Type = (Action.ActionType)Enum.Parse(typeof(Action.ActionType), action.Attribute("type").Value),
+                            Name = action.Attribute("name").Value,
+                            Value = action.Attribute("value").Value,
+                            IsConnectionString = Boolean.Parse(action.Attribute("is-connection-string").Value)
+                        }
+                    );
+                }
+            }
+            return ret;
+        }
+
         public override string ToString() {
             return String.Join("\n",
                 Actions.Select(a => String.Format("{0} {1}='{2}'", a.Type, a.Name, a.Value))
@@ -116,8 +134,7 @@ namespace SharePointPrimitives.SettingsProvider {
             );
         }
 
-        //public static Patch FromXml(XElement element) {
-        //}
+
 
         public struct ApplyOptions {
             public bool UseExistingConnectionStrings { get; set; }
@@ -126,6 +143,10 @@ namespace SharePointPrimitives.SettingsProvider {
         }
 
         public void Apply(ApplyOptions options) {
+
+            if (IsEmpty)
+                return;
+
             using (var database = new SettingsProviderDatabase()) {
                 var section = database.Sections.FirstOrDefault(s => s.Name == Section);
                 if (section == null) {
@@ -136,31 +157,71 @@ namespace SharePointPrimitives.SettingsProvider {
                 foreach (Action action in Actions) {
                     switch (action.Type) {
                         case Action.ActionType.Insert:
+                            if (action.IsConnectionString) 
+                                InsertConnectionString(options, database, section, action);
+                            else 
+                                InsertApplcationSetting(section, action);
+                            break;
+                        case Action.ActionType.Delete:
                             if (action.IsConnectionString) {
-                                var name = new SqlConnectionName() {
-                                    Name = action.Name
-                                };
-                                var connection = new SqlConnectionString() {
-                                    ConnectionString = action.Value
-                                };
-
-                                database.AddToSqlConnectionNames(name);
-                                database.AddToSqlConnectionStrings(connection);
-
-                                name.Section = section;
-                                name.SqlConnectionString = connection;
+                                database.DeleteObject(database.SqlConnectionNames.Where(n => n.Section.Id == section.Id && n.Name == action.Name));
                             } else {
-                                var setting = new ApplicationSetting() {
-                                    Name = action.Name,
-                                    Value = action.Value
-                                };
-                                setting.Section = section;
+                                database.DeleteObject(database.ApplicationSettings.Where(s => s.Name == action.Name));
+                            }
+                            break;
+                        case Action.ActionType.Update:
+                            if (action.IsConnectionString) {
+                                SqlConnectionString connection = database.SqlConnectionNames
+                                    .Include("Section")
+                                    .Include("SqlConnectionString")
+                                    .Where(sec => sec.Section.Id == section.Id)
+                                    .Select(sec => sec.SqlConnectionString)
+                                    .FirstOrDefault();
+                                if(connection != null)
+                                    connection.ConnectionString = action.Value;
+                            } else {
+                                ApplicationSetting setting = database.ApplicationSettings
+                                    .Include("Section")
+                                    .Where(s => s.Section.Id == section.Id && s.Name == action.Name)
+                                    .FirstOrDefault();
+                                if (setting != null)
+                                    setting.Value = action.Value;
                             }
                             break;
                     }
                 }
                 database.SaveChanges();
             }
+        }
+
+        private static void InsertApplcationSetting(SettingsProvider.Section section, Action action) {
+            var setting = new ApplicationSetting() {
+                Name = action.Name,
+                Value = action.Value
+            };
+            setting.Section = section;
+        }
+
+        private static void InsertConnectionString(ApplyOptions options, SettingsProviderDatabase database, SettingsProvider.Section section, Action action) {
+            var name = new SqlConnectionName() {
+                Name = action.Name
+            };
+
+            SqlConnectionString connection = null;
+            if (!options.UseExistingConnectionStrings) {
+                connection = database.SqlConnectionStrings.FirstOrDefault(c => c.ConnectionString == action.Value);
+            }
+            if (connection == null) {
+                connection = new SqlConnectionString() {
+                    ConnectionString = action.Value
+                };
+                database.AddToSqlConnectionStrings(connection);
+            }
+
+            database.AddToSqlConnectionNames(name);
+
+            name.Section = section;
+            name.SqlConnectionString = connection;
         }
     }
 }
