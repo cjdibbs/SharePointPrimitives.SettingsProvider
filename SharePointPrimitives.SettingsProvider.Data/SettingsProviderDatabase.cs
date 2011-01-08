@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.Common;
 using System.Data;
+using System.Data.Objects;
 
 namespace SharePointPrimitives.SettingsProvider {
     public partial class SettingsProviderDatabase {
@@ -27,6 +28,27 @@ namespace SharePointPrimitives.SettingsProvider {
 
                 var reader = cmd.ExecuteNonQuery();
             }
+        }
+
+        private static Func<SettingsProviderDatabase, string, IQueryable<ApplicationSetting>> SectionData =
+            CompiledQuery.Compile((SettingsProviderDatabase context, string sectionName) =>
+                context.ApplicationSettings.Include("Section")
+                       .Where(setting => setting.Section.Name == sectionName)
+            );
+
+        public Dictionary<string, string> GetApplcationSettingsFor(string sectionName) {
+            return SectionData(this, sectionName).ToDictionary(
+                k => k.Name,
+                v => v.Value
+            );
+        }
+
+        public Dictionary<string, string> GetNamedConnectionsFor(string sectionName) {
+            return this.SqlConnectionNames
+                .Include("Section")
+                .Include("SqlConnectionString")
+                .Where(name => name.Section.Name == sectionName)
+                .ToDictionary(k => k.Name, v => v.SqlConnectionString.ConnectionString);
         }
     }
 }
