@@ -32,7 +32,7 @@ namespace SharePointPrimitives.SettingsProvider.Data.Tests {
             Assert.AreEqual(1, state.ConnectionStrings.Count);
             Assert.AreEqual("20", state.Settings["ExampleInt"]);
             Assert.AreEqual("Testing update", state.Settings["ExampleString"]);
-            Assert.AreEqual("Data Source=NOWBI-ADMIN;Initial Catalog=NowBI.VI.ReportingDB;Integrated Security=True", state.ConnectionStrings["ExampleConnection"]);
+            Assert.AreEqual("Data Source=NOWBI-ADMIN;Initial Catalog=NowBI.VI.ReportingDB;Integrated Security=False", state.ConnectionStrings["ExampleConnection"]);
 
         }
 
@@ -44,10 +44,9 @@ namespace SharePointPrimitives.SettingsProvider.Data.Tests {
 
             var state = SnapShot.GetFor(section);
             Assert.AreEqual(1, state.Settings.Count);
-            Assert.AreEqual(1, state.ConnectionStrings.Count);
+            Assert.AreEqual(0, state.ConnectionStrings.Count);
             Assert.IsFalse(state.Settings.ContainsKey("ExampleInt"));
             Assert.AreEqual("Testing update", state.Settings["ExampleString"]);
-            Assert.AreEqual("Data Source=NOWBI-ADMIN;Initial Catalog=NowBI.VI.ReportingDB;Integrated Security=True", state.ConnectionStrings["ExampleConnection"]);
 
         }
 
@@ -66,6 +65,7 @@ namespace SharePointPrimitives.SettingsProvider.Data.Tests {
             string patch =
 @"<patch assembly='SharePointPrimitives.SettingsProvider.Data.Tests' section='" + section + @"' >
     <action type='Update' name='ExampleInt' value='20' is-connection-string='false' />
+    <action type='Update' name='ExampleConnection' value='Data Source=NOWBI-ADMIN;Initial Catalog=NowBI.VI.ReportingDB;Integrated Security=False' is-connection-string='true' />
 </patch>";
 
             Patch.FromXml(XElement.Parse(patch)).Apply(new Patch.ApplyOptions());
@@ -75,6 +75,7 @@ namespace SharePointPrimitives.SettingsProvider.Data.Tests {
             string patch =
 @"<patch assembly='SharePointPrimitives.SettingsProvider.Data.Tests' section='" + section + @"' >
     <action type='Delete' name='ExampleInt' value='20' is-connection-string='false' />
+    <action type='Delete' name='ExampleConnection' value='Data Source=NOWBI-ADMIN;Initial Catalog=NowBI.VI.ReportingDB;Integrated Security=True' is-connection-string='true' />
 </patch>";
 
             var p = Patch.FromXml(XElement.Parse(patch));

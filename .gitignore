@@ -29,3 +29,4 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 *.[dbmdl]
 /SharePointPrimitives.SettingsProvider/patch.xml
+*.vsmdi

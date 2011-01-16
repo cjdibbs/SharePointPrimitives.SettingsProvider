@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SyncSettings.cs" />
+    <Compile Include="TestPatch.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharePointPrimitives.SettingsProvider.Data\SharePointPrimitives.SettingsProvider.Data.csproj">
