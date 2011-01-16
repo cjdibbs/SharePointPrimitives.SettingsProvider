@@ -51,15 +51,7 @@ namespace SharePointPrimitives.SettingsProvider {
             base.Initialize(name, values);
         }
 
-        /// <summary>
-        /// Cache of the sql connections used by this assembly
-        /// </summary>
-        private Dictionary<string, string> ConnectionCache;
-
-        /// <summary>
-        /// Cache of the application settings used by this assembly
-        /// </summary>
-        private Dictionary<string, string> ApplicationCache;
+        private SnapShot settings;
 
         /// <summary>
         /// Loads the settings from the database. This is only called when a propery in the Settings object
@@ -69,26 +61,22 @@ namespace SharePointPrimitives.SettingsProvider {
         /// <param name="properties"></param>
         /// <returns>The requested settings</returns>
         public override SettingsPropertyValueCollection GetPropertyValues(SettingsContext context, SettingsPropertyCollection properties) {
-            using (var database = new SettingsProviderDatabase()) {
-                SettingsPropertyValueCollection values = new SettingsPropertyValueCollection();
-                string section = GetSectionName(context);
-                ApplicationCache = database.GetApplcationSettingsFor(section);
-                ConnectionCache = database.GetNamedConnectionsFor(section);
-                foreach (SettingsProperty property in properties) {
+            SettingsPropertyValueCollection values = new SettingsPropertyValueCollection();
+            string section = GetSectionName(context);
+            settings = SnapShot.GetFor(section);
+            foreach (SettingsProperty property in properties) {
 
-                    SpecialSettingAttribute attribute = property.Attributes[typeof(SpecialSettingAttribute)] as SpecialSettingAttribute;
-                    if (attribute != null && (attribute.SpecialSetting == SpecialSetting.ConnectionString))
-                        values.Add(GetConnectionStringValue(section, property));
-                    else if (IsApplicationSetting(property))
-                        values.Add(GetApplcationSetting(property));
-                    else
-                        throw new ConfigurationErrorsException("User settings are not supported in this provider");
-
-                }
-                ApplicationCache = null;
-                ConnectionCache = null;
-                return values;
+                SpecialSettingAttribute attribute = property.Attributes[typeof(SpecialSettingAttribute)] as SpecialSettingAttribute;
+                if (attribute != null && (attribute.SpecialSetting == SpecialSetting.ConnectionString))
+                    values.Add(GetConnectionStringValue(section, property));
+                else if (IsApplicationSetting(property))
+                    values.Add(GetApplcationSetting(property));
+                else
+                    throw new ConfigurationErrorsException("User settings are not supported in this provider");
             }
+            
+            return values;
+
         }
 
         /// <summary>
@@ -101,8 +89,8 @@ namespace SharePointPrimitives.SettingsProvider {
         private SettingsPropertyValue GetApplcationSetting(SettingsProperty property) {
             SettingsPropertyValue value = new SettingsPropertyValue(property);
 
-            if (ApplicationCache.ContainsKey(property.Name))
-                value.SerializedValue = ApplicationCache[property.Name];
+            if (settings.Settings.ContainsKey(property.Name))
+                value.SerializedValue = settings.Settings[property.Name];
             else if (property.DefaultValue != null)
                 value.SerializedValue = property.DefaultValue;
             else
@@ -123,8 +111,8 @@ namespace SharePointPrimitives.SettingsProvider {
             SettingsPropertyValue value = new SettingsPropertyValue(property);
             string settingName = section + "." + property.Name;
 
-            if (ConnectionCache.ContainsKey(settingName))
-                value.PropertyValue = ConnectionCache[settingName];
+            if (settings.ConnectionStrings.ContainsKey(settingName))
+                value.PropertyValue = settings.ConnectionStrings[settingName];
             else if (property.DefaultValue != null)
                 value.PropertyValue = property.DefaultValue;
 

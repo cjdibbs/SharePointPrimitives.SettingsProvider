@@ -9,13 +9,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharePointPrimitives.Settin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider.Data", "SharePointPrimitives.SettingsProvider.Data\SharePointPrimitives.SettingsProvider.Data.csproj", "{D8AEF72D-7905-4CDF-981A-8D8778E2B136}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider", "SharePointPrimitives.SettingsProvider\SharePointPrimitives.SettingsProvider.csproj", "{891273BB-B6C3-4E6C-9023-D0D6936409ED}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider.Example", "SharePointPrimitives.SettingsProvider.SimpleExample\SharePointPrimitives.SettingsProvider.Example.csproj", "{6EF9E842-9FF4-4128-A046-72D7EA86555A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider.Log4net", "SharePointPrimitives.SettingsProvider.Log4net\SharePointPrimitives.SettingsProvider.Log4net.csproj", "{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Provider", "Provider", "{8CA252C6-1D6C-411F-AB03-48184DBF2939}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider", "SharePointPrimitives.SettingsProvider\SharePointPrimitives.SettingsProvider.csproj", "{891273BB-B6C3-4E6C-9023-D0D6936409ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePointPrimitives.SettingsProvider.Data.Tests", "SharePointPrimitives.SettingsProvider.Data.Tests\SharePointPrimitives.SettingsProvider.Data.Tests.csproj", "{85BFB6D1-0792-4910-8270-1F01437033C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC625772-BC07-4402-9230-14BA65A4B5AA}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		SharePointPrimitives.SettingsProvider.vsmdi = SharePointPrimitives.SettingsProvider.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = SharePointPrimitives.SettingsProvider.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -49,16 +63,6 @@ Global
 		{D8AEF72D-7905-4CDF-981A-8D8778E2B136}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D8AEF72D-7905-4CDF-981A-8D8778E2B136}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D8AEF72D-7905-4CDF-981A-8D8778E2B136}.Release|x86.ActiveCfg = Release|Any CPU
-		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Release|x86.ActiveCfg = Release|Any CPU
 		{6EF9E842-9FF4-4128-A046-72D7EA86555A}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{6EF9E842-9FF4-4128-A046-72D7EA86555A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{6EF9E842-9FF4-4128-A046-72D7EA86555A}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -79,6 +83,26 @@ Global
 		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A}.Release|x86.ActiveCfg = Release|Any CPU
+		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{891273BB-B6C3-4E6C-9023-D0D6936409ED}.Release|x86.ActiveCfg = Release|Any CPU
+		{85BFB6D1-0792-4910-8270-1F01437033C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85BFB6D1-0792-4910-8270-1F01437033C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85BFB6D1-0792-4910-8270-1F01437033C0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{85BFB6D1-0792-4910-8270-1F01437033C0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{85BFB6D1-0792-4910-8270-1F01437033C0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{85BFB6D1-0792-4910-8270-1F01437033C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85BFB6D1-0792-4910-8270-1F01437033C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85BFB6D1-0792-4910-8270-1F01437033C0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{85BFB6D1-0792-4910-8270-1F01437033C0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{85BFB6D1-0792-4910-8270-1F01437033C0}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,7 +110,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {E707C460-A31E-46CF-94FA-8B2E0AE4D8FE}
 		{D8AEF72D-7905-4CDF-981A-8D8778E2B136} = {E707C460-A31E-46CF-94FA-8B2E0AE4D8FE}
+		{85BFB6D1-0792-4910-8270-1F01437033C0} = {E707C460-A31E-46CF-94FA-8B2E0AE4D8FE}
 		{6EF9E842-9FF4-4128-A046-72D7EA86555A} = {DBF363A0-9B6F-4A40-963E-E662CF064424}
 		{CDF620CA-93F4-4913-9C06-E707CA8CCB3A} = {DBF363A0-9B6F-4A40-963E-E662CF064424}
+		{891273BB-B6C3-4E6C-9023-D0D6936409ED} = {8CA252C6-1D6C-411F-AB03-48184DBF2939}
 	EndGlobalSection
 EndGlobal

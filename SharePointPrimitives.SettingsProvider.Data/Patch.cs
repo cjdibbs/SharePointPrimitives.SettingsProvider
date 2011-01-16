@@ -143,7 +143,6 @@ namespace SharePointPrimitives.SettingsProvider {
         }
 
         public void Apply(ApplyOptions options) {
-
             if (IsEmpty)
                 return;
 
@@ -164,9 +163,15 @@ namespace SharePointPrimitives.SettingsProvider {
                             break;
                         case Action.ActionType.Delete:
                             if (action.IsConnectionString) {
-                                database.DeleteObject(database.SqlConnectionNames.Where(n => n.Section.Id == section.Id && n.Name == action.Name));
+                                var names = from connectionName in database.SqlConnectionNames.Include("Section")
+                                            where connectionName.Section.Id == section.Id && connectionName.Name == action.Name
+                                            select connectionName;
+                                foreach (var name in names) database.DeleteObject(name);
                             } else {
-                                database.DeleteObject(database.ApplicationSettings.Where(s => s.Name == action.Name));
+                                var settings = from setting in database.ApplicationSettings
+                                               where setting.SectionId == section.Id && setting.Name == action.Name
+                                               select setting;
+                                foreach (var name in settings) database.DeleteObject(name);
                             }
                             break;
                         case Action.ActionType.Update:
