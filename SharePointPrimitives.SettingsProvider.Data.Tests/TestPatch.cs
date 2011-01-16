@@ -2,13 +2,13 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Linq;
+using NUnit.Framework;
 
 namespace SharePointPrimitives.SettingsProvider.Data.Tests {
-    [TestClass]
+    [TestFixture]
     public class TestPatch {
-        [TestMethod]
+        [Test]
         public void TestAddViaXml() {
             string section = Guid.NewGuid().ToString();
             RunAddViaXml(section);
@@ -21,7 +21,7 @@ namespace SharePointPrimitives.SettingsProvider.Data.Tests {
             Assert.AreEqual("Data Source=NOWBI-ADMIN;Initial Catalog=NowBI.VI.ReportingDB;Integrated Security=True", state.ConnectionStrings["ExampleConnection"]);
         }
 
-        [TestMethod]
+        [Test]
         public void TestUpdateViaXml() {
             string section = Guid.NewGuid().ToString();
             RunAddViaXml(section);
@@ -36,7 +36,7 @@ namespace SharePointPrimitives.SettingsProvider.Data.Tests {
 
         }
 
-        [TestMethod]
+        [Test]
         public void TestDeleteViaXml() {
             string section = Guid.NewGuid().ToString();
             RunAddViaXml(section);
@@ -48,6 +48,46 @@ namespace SharePointPrimitives.SettingsProvider.Data.Tests {
             Assert.IsFalse(state.Settings.ContainsKey("ExampleInt"));
             Assert.AreEqual("Testing update", state.Settings["ExampleString"]);
 
+        }
+
+        [Test]
+        public void TestToXml() {
+            string section = Guid.NewGuid().ToString();
+            string patchTxt =
+@"<patch assembly='SharePointPrimitives.SettingsProvider.Data.Tests' section='" + section + @"' >
+    <action type='Insert' name='ExampleInt' value='10' is-connection-string='false' />
+    <action type='Insert' name='ExampleString' value='Testing update' is-connection-string='false' />
+    <action type='Insert' name='ExampleConnection' value='Data Source=NOWBI-ADMIN;Initial Catalog=NowBI.VI.ReportingDB;Integrated Security=True' is-connection-string='true' />
+</patch>";
+            var elmIn = XElement.Parse(patchTxt);
+            Patch patch = Patch.FromXml(elmIn);
+            var elmOut = patch.ToXml();
+            Assert.AreEqual(elmIn.ToString(), elmOut.ToString());
+        }
+
+        [Test]
+        public void TestEmptyPatch() {
+            var empty = new Patch();
+            empty.Apply(new Patch.ApplyOptions());
+        }
+
+        [Test]
+        public void TestToString() {
+            string section = Guid.NewGuid().ToString();
+            string patchTxt =
+@"<patch assembly='SharePointPrimitives.SettingsProvider.Data.Tests' section='" + section + @"' >
+    <action type='Insert' name='ExampleInt' value='10' is-connection-string='false' />
+    <action type='Insert' name='ExampleString' value='Testing update' is-connection-string='false' />
+    <action type='Insert' name='ExampleConnection' value='Data Source=NOWBI-ADMIN;Initial Catalog=NowBI.VI.ReportingDB;Integrated Security=True' is-connection-string='true' />
+</patch>";
+            var elmIn = XElement.Parse(patchTxt);
+            Patch patch = Patch.FromXml(elmIn);
+            var text = patch.ToString();
+            var lines = text.Split('\n');
+            Assert.AreEqual(3, lines.Length);
+            StringAssert.StartsWith("Insert", lines[0]);
+            StringAssert.StartsWith("Insert", lines[1]);
+            StringAssert.StartsWith("Insert", lines[2]);
         }
 
         private static void RunAddViaXml(string section) {
