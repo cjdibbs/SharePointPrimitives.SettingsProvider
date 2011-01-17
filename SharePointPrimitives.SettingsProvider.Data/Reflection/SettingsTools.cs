@@ -65,6 +65,9 @@ namespace SharePointPrimitives.SettingsProvider.Reflection {
         public static Type GetSettingsType(this Assembly assembly) {
             Type settingsT = assembly.GetTypes().FirstOrDefault(t => t.BaseType == ApplicationSettingsBaseT);
 
+            if (settingsT == null)
+                return null;
+
             var attr = settingsT.GetCustomAttribute<SettingsProviderAttribute>(true);
             if (attr == null || !attr.ProviderTypeName.StartsWith(ProviderClassName)) {
                 return null;

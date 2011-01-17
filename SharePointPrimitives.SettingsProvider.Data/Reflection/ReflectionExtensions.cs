@@ -55,8 +55,14 @@ namespace SharePointPrimitives.SettingsProvider.Reflection {
         /// <typeparam name="AttributeT">type of Attribute to search for</typeparam>
         /// <param name="inherit">include base classes in the search</param>
         /// <returns>the Attribute or null if it not found</returns>
-        public static AttributeT GetCustomAttribute<AttributeT>(this ICustomAttributeProvider provider, bool inherit) {
-            return provider.GetCustomAttributes(typeof(AttributeT), inherit).OfType<AttributeT>().FirstOrDefault();
+        public static AttributeT GetCustomAttribute<AttributeT>(this ICustomAttributeProvider provider, bool inherit) where AttributeT : class {
+            if(provider == null)
+                throw new ArgumentException("must not be null", "provider");
+
+            var attrs = provider.GetCustomAttributes(typeof(AttributeT), inherit).OfType<AttributeT>();
+            if(attrs != null)
+                return attrs.FirstOrDefault();
+            return null;
         }
 
         /// <summary>

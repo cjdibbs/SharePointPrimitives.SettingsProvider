@@ -84,7 +84,7 @@ namespace SharePointPrimitives.SettingsProvider {
                         Name = setting.Key,
                         Value = setting.Value,
                         IsConnectionString = areConnectionStrings,
-                        Type = Action.ActionType.Update
+                        Type = Action.ActionType.Delete
                     });
             }
         }

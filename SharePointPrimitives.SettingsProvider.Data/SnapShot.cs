@@ -40,7 +40,7 @@ namespace SharePointPrimitives.SettingsProvider {
         public Dictionary<string, string> Settings { get; private set; }
         public Dictionary<string, string> ConnectionStrings { get; private set; }
 
-        public bool IsEmpty() { return Settings.Count == 0 && ConnectionStrings.Count == 0; }
+        public bool IsEmpty { get { return Settings.Count == 0 && ConnectionStrings.Count == 0; } }
 
         public SnapShot() {
             Settings = new Dictionary<string, string>();
@@ -59,8 +59,10 @@ namespace SharePointPrimitives.SettingsProvider {
             ret.Assembly = assembly.FullName;
 
             Type settingsT = assembly.GetSettingsType();
+            
             if (settingsT == null)
-                return null;
+                throw new ArgumentException("Assembly does not support the SharePoint Primitves Settings Provider.");
+
             ret.Section = settingsT.FullName;
 
             var settings = settingsT.GetProperties().Where(p => p.HasCustomAttribute<ApplicationScopedSettingAttribute>(true));
